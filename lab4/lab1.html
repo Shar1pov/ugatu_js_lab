@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Шарипов И.Р. ПИ-322</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="jquery.seat-charts.css">
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="afisha.css" .css">
+	<script src="../jquery.js"></script>
+	<script src="../jquery-ui.js"></script>
+	<script src="cinemaPlaces.js"></script>
+	<script>
+		$(function () {
+			$("#dialog-form").dialog({
+				autoOpen: false,
+				modal: true,
+				width: 800,
+			});
+
+			$("#tabs").tabs();
+
+			$("#speed").selectmenu();
+
+			$("#tabs-movie-type").tabs();
+
+			$(".btn-buy").click(function () {
+				$("#dialog-form").dialog("open");
+				let movieTitle = $(this).data('title');
+				$('.ui-dialog-title').text("Купить билет на " + movieTitle);
+				let eventType = $(this).data('type');
+				if (eventType == 'cinema') {
+					$(".places-option").remove();
+					$("#event-places").append(`<option selected disabled class="places-option">Выберите кинотеатр</option>
+					<option class="places-option">ULTRA Cinema МИР</option>
+					<option class="places-option">Кинопростор</option>
+					<option class="places-option">Искра</option>
+					<option class="places-option">Синема парк Семья</option>`);
+					$("#event-type").text('Кинотеатр');
+					$(".front-indicator").text('Экран');
+					$(".front-indicator").attr('title', 'Длина киноэкрана - 20 метров');
+				} else if (eventType == 'koncert') {
+					$(".places-option").remove();
+					$("#event-places").append(`<option selected disabled class="places-option">Выберите заведение</option>
+					<option class="places-option">Тинькофф-холл</option>
+					<option class="places-option">Башкирская филармония</option>
+					<option class="places-option">Дворец культуры</option>
+					`);
+					$("#event-type").text('Концертный зал');
+					$(".front-indicator").text('Сцена');
+					$(".front-indicator").attr('title', 'Длина сцены - 15 метров');
+				} else if (eventType == 'teatr') {
+					$(".places-option").remove();
+					$("#event-places").append(`<option selected disabled class="places-option">Выберите театр</option>
+					<option class="places-option">Театр НУР</option>
+					<option class="places-option">Театр драмы им. М.Гафури</option>`);
+					$("#event-type").text('Театр');
+					$(".front-indicator").text('Сцена');
+					$(".front-indicator").attr('title', 'Длина сцены - 15 метров');
+				}
+			});
+
+			$("#datepicker").datepicker();
+
+			$(".low-price").tooltip();
+
+			$("input").checkboxradio();
+		});
+
+
+		$(document).on('click', '.btn-buy-confirm', function () {
+			$("#dialog-confirm").dialog({
+				resizable: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+				buttons: {
+					"Да": function () {
+						$("#dialog-thanks").dialog({
+							resizable: false,
+							height: "auto",
+							width: 400,
+							modal: true,
+							buttons: {
+								"Закрыть": function () {
+									$(this).dialog("close");
+									$("#dialog-confirm").dialog("close");
+									$("#dialog-form").dialog("close");
+								},
+							}
+						});
+					},
+					Нет: function () {
+						$(this).dialog("close");
+					}
+				}
+			});
+		});
+
+	</script>
+	<script src="jquery.seat-charts.js"></script>
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<div class="pb-4 text-center border-bottom">
+				<h2 class="fw-bold">Шарипов Ильян Рустемович</h1>
+					<h3 class="mt-3 pb-3">Группа ПИ-322
+				</h2>
+				<a href="https://github.com/Shar1pov/ugatu_js_lab" target="_blank"
+					class="btn btn-primary btn-sm px-4 me-sm-3">
+					Ссылка на репозиторий GitHub
+				</a>
+				<a href="/lab4" class="btn btn-outline-secondary btn-sm px-4">Все задания</a>
+			</div>
+
+			<div class="py-5 border-bottom">
+				<p class="fw-bold">Задание №1</p>
+
+				<h5 class="py-3">Афиша мероприятий</h5>
+				<div class="row pb-5">
+					<div class="col-lg-12">
+						<div id="tabs">
+							<ul class="events-tablist">
+								<li><a href="#tabs-1">Кино</a></li>
+								<li><a href="#tabs-2">Концерты</a></li>
+								<li><a href="#tabs-3">Театр</a></li>
+							</ul>
+							<div id="tabs-1" class="event-tab">
+								<div class="event-item">
+									<img src="../images/events/3.jpg" class="event-img">
+									<div class="event-content">
+										<h4 class="event-title">Интерстеллар (16+)</h4>
+										<p class="event-description"><span>Описание:</span> Когда засуха, пыльные бури и
+											вымирание растений приводят человечество к продовольственному кризису,
+											коллектив исследователей и учёных отправляется сквозь червоточину в
+											путешествие, чтобы превзойти прежние ограничения для космических путешествий
+											человека и найти планету с подходящими для человечества условиями.
+										</p>
+										<p class="event-description"><span>Жанр:</span> фантастика, драма, приключения
+										</p>
+										<p class="event-description"><span>Режиссер:</span> Кристофер Нолан</p>
+										<button type="button" class="btn btn-primary btn-buy"
+											data-title="Интерстеллар (16+)" data-type="cinema">Купить
+											билет</button>
+									</div>
+								</div>
+								<div class="event-item">
+									<img src="../images/events/2.jpg" class="event-img">
+									<div class="event-content">
+										<h4 class="event-title">Форрест Гамп (16+)</h4>
+										<p class="event-description"><span>Описание:</span> Сидя на автобусной
+											остановке, Форрест Гамп — не очень умный, но добрый и открытый парень —
+											рассказывает случайным
+											встречным историю своей необыкновенной жизни.
+										</p>
+										<p class="event-description"><span>Жанр:</span> драма, комедия, мелодрама,
+											история, военный</p>
+										<p class="event-description"><span>Режиссер:</span> Роберт Земекис</p>
+										<button type="button" class="btn btn-primary btn-buy"
+											data-title="Форрест Гамп (16+)" data-type="cinema">Купить
+											билет</button>
+									</div>
+								</div>
+								<div class="event-item">
+									<img src="../images/events/1.jpg" class="event-img">
+									<div class="event-content">
+										<h4 class="event-title">Зеленая миля (16+)</h4>
+										<p class="event-description"><span>Описание:</span> Пол Эджкомб — начальник
+											блока смертников в тюрьме «Холодная гора», каждый из узников которого
+											однажды проходит «зеленую
+											милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за
+											время работы. Однако гигант Джон Коффи,
+											обвинённый в страшном преступлении, стал одним из самых необычных обитателей
+											блока.
+										</p>
+										<p class="event-description"><span>Жанр:</span> драма, криминал</p>
+										<p class="event-description"><span>Режиссер:</span> Фрэнк Дарабонт</p>
+										<button type="button" class="btn btn-primary btn-buy"
+											data-title="Зеленая миля (16+)" data-type="cinema">Купить
+											билет</button>
+									</div>
+								</div>
+							</div>
+							<div id="tabs-2">
+								<div class="event-item">
+									<img src="../images/events/5.jpg" class="event-img">
+									<div class="event-content">
+										<h4 class="event-title">Весенний комплимент</h4>
+										<p class="event-description"><span>Описание:</span> Альберт Жалилов — оперный и
+											эстрадно-классический певец, солист Центрального оркестра войск национальной
+											гвардии РФ (Москва), завоевавший сердца многих жителей России.
+											Участник и победитель нескольких телевизионных
+											проектов, победитель Международного конкурса
+											русской песни в Лондоне и т.д.
+										</p>
+										<p class="event-description"><span>В программе:</span> неаполитанские,
+											итальянские песни, советская эстрада</p>
+										<p class="event-description"><span>Солист:</span> заслуженный артист Республики
+											Татарстан Альберт Жалилов</p>
+										<button type="button" class="btn btn-primary btn-buy"
+											data-title="Весенний комплимент" data-type="koncert">Купить
+											билет</button>
+									</div>
+								</div>
+							</div>
+							<div id="tabs-3">
+								<div class="event-item">
+									<img src="../images/events/4.jpg" class="event-img">
+									<div class="event-content">
+										<h4 class="event-title">Щелкунчик</h4>
+										<p class="event-description"><span>Описание:</span> Волшебная зимняя сказка
+											«Щелкунчик» неизменно ассоциируется с прекрасной музыкой Петра Ильича
+											Чайковского. Чудесные
+											превращения, борьба с Мышиным Королем, любовь Клары и Щелкунчика, снежное
+											царство с искрящимися, как бриллианты,
+											снежинками и россыпь красивейших танцев не оставляют равнодушными ни детей,
+											ни взрослых.
+										</p>
+										<p class="event-description"><span>Жанр:</span> балет</p>
+										<p class="event-description"><span>Театр-постановщик:</span> Саратовский театр
+											оперы и балета</p>
+										<button type="button" class="btn btn-primary btn-buy" data-title="Щелкунчик"
+											data-type="teatr">Купить
+											билет</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="modals d-none">
+		<div id="dialog-form" title="Выбор билетов">
+			<form class="row g-3 mt-3" method="post">
+				<div class="col-md-6">
+					<label for="name" class="form-label">ФИО</label>
+					<input type="text" class="form-control" id="name" placeholder="Ваше ФИО">
+				</div>
+				<div class="col-md-6">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" class="form-control" id="email" placeholder="Ваш Email">
+				</div>
+				<div class="col-md-6">
+					<label for="message" class="form-label" id="event-type"></label>
+					<select class="form-control" id="event-places"></select>
+				</div>
+				<div class="col-md-6">
+					<label for="message" class="form-label">Дата</label>
+					<input type="text" id="datepicker" class="form-control" placeholder="Выберите дату">
+				</div>
+				<div class="col-md-12">
+					<p>Время сеанса:</p>
+					<div id="tabs-movie-type">
+						<ul class="">
+							<li><a href="#tabs-1">10:15</a></li>
+							<li><a href="#tabs-2">12:30</a></li>
+							<li><a href="#tabs-3">15:00</a></li>
+							<li><a href="#tabs-4">17:15</a></li>
+						</ul>
+
+						<div id="tabs-1" class="event-tab">
+							<div class="col-md-12">
+								<div id="seat-map1">
+									<div class="front-indicator" title="Киноэкран">Экран</div>
+								</div>
+								<div class="booking-details">
+									<h3> Выбрано мест (<span id="counter1">0</span>):</h3>
+									<ul id="selected-seats1" class="selected-seats">
+									</ul>
+									Общая стоимость: <b><span id="total1">0</span> руб.</b>
+									<div id="legend1"></div>
+								</div>
+							</div>
+						</div>
+						<div id="tabs-2" class="event-tab">
+							<div class="col-md-12">
+								<div id="seat-map2">
+									<div class="front-indicator" title="Киноэкран">Экран</div>
+								</div>
+								<div class="booking-details">
+									<h3> Выбрано мест (<span id="counter2">0</span>):</h3>
+									<ul id="selected-seats2" class="selected-seats">
+									</ul>
+									Общая стоимость: <b><span id="total2">0</span> руб.</b>
+									<div id="legend2"></div>
+								</div>
+							</div>
+						</div>
+						<div id="tabs-3" class="event-tab">
+							<div class="col-md-12">
+								<div id="seat-map3">
+									<div class="front-indicator" title="Киноэкран">Экран</div>
+								</div>
+								<div class="booking-details">
+									<h3> Выбрано мест (<span id="counter3">0</span>):</h3>
+									<ul id="selected-seats3" class="selected-seats">
+									</ul>
+									Общая стоимость: <b><span id="total3">0</span> руб.</b>
+									<div id="legend3"></div>
+								</div>
+							</div>
+						</div>
+						<div id="tabs-4" class="event-tab">
+							<div class="col-md-12">
+								<div id="seat-map4">
+									<div class="front-indicator" title="Киноэкран">Экран</div>
+								</div>
+								<div class="booking-details">
+									<h3> Выбрано мест (<span id="counter4">0</span>):</h3>
+									<ul id="selected-seats4" class="selected-seats">
+									</ul>
+									Общая стоимость: <b><span id="total4">0</span> руб.</b>
+									<div id="legend4"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="col-md-12">
+					<button type="button" class="btn btn-primary btn-buy-confirm">Оформить заявку</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="dialog-confirm" title="Купить билет?">
+			<p>Совершая заказ Вы подтверждаете согласие с условиями нашего договора-оферты</p>
+		</div>
+
+		<div id="dialog-thanks" title="Бронирование прошло успешно">
+			<p>Спасибо за покупку!</p>
+		</div>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

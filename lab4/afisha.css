@@ -1,0 +1,220 @@
+/* Events Afisha */
+
+.events-tablist {
+	display: flex;
+	margin-bottom: 20px;
+	background: #fff;
+	padding: 20px 20px;
+	border-radius: 25px;
+	border: 3px solid #f4f6f9;
+}
+
+.events-tablist li {
+	list-style: none;
+
+}
+
+.events-tablist li>a {
+	font-size: 16px;
+	color: #666666;
+	padding: 1.25rem 1.25rem;
+	border: 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.events-tablist li.ui-tabs-active>a {
+	background: #fff;
+	color: #000;
+	text-decoration: underline;
+}
+
+.event-item {
+	border: 3px solid #f4f6f9;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.event-item:hover {
+	box-shadow: 0 5px 20px 0 rgb(90 111 155 / 10%);
+}
+
+.event-title {
+	color: #020f25;
+	font-weight: 600;
+}
+
+.event-img {
+	max-width: 160px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.event-content {
+	margin-left: 30px;
+}
+
+.event-description {
+	color: #818181;
+}
+
+.event-description span {
+	color: #000;
+	font-weight: 500;
+}
+
+#tabs {
+	border: none;
+}
+
+.ui-tabs .ui-tabs-panel {
+	padding: 1em 0;
+}
+
+.ui-tabs .ui-tabs-nav li {
+	background: none;
+	border: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+	text-decoration: underline;
+	color: #000;
+	font-weight: bold;
+}
+
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: 0.1em 1em;
+}
+
+.ui-widget.ui-widget-content {
+	border: none;
+}
+
+.ui-widget-header {
+	background-color: #fff;
+}
+
+#dialog-form {
+	padding-bottom: 20px;
+}
+
+.ui-widget-overlay {
+	background: #aaaaaa;
+	opacity: .3;
+	-ms-filter: Alpha(Opacity=30);
+}
+
+.ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Places */
+.front-indicator {
+	width: 220px;
+	margin: 5px 32px 15px 32px;
+	background-color: #f6f6f6;
+	color: #adadad;
+	text-align: center;
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.booking-details {
+	float: left;
+	text-align: left;
+	margin-left: 35px;
+	font-size: 12px;
+	position: relative;
+	height: 330px;
+}
+
+.booking-details h2 {
+	margin: 25px 0 20px 0;
+	font-size: 17px;
+}
+
+.booking-details h3 {
+	margin: 5px 5px 0 0;
+	font-size: 14px;
+}
+
+div.seatCharts-cell {
+	color: #182C4E;
+	height: 25px;
+	width: 25px;
+	line-height: 25px;
+
+}
+
+div.seatCharts-seat {
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+div.seatCharts-row {
+	height: 35px;
+}
+
+div.seatCharts-seat.available {
+	background-color: #150af0;
+
+}
+
+div.seatCharts-seat.available.low-price {
+	/* 	background: url(vip.png); */
+	background-color: #6ca9f4;
+}
+
+div.seatCharts-seat.focused {
+	background-color: #2304af;
+}
+
+div.seatCharts-seat.selected {
+	background-color: #d400ff;
+}
+
+div.seatCharts-seat.unavailable {
+	background-color: #747474;
+}
+
+div.seatCharts-container {
+	border-right: 1px dotted #adadad;
+	width: 350px;
+	padding: 20px;
+	float: left;
+}
+
+div.seatCharts-legend {
+	padding-left: 0px;
+	position: absolute;
+	bottom: 16px;
+}
+
+ul.seatCharts-legendList {
+	padding-left: 0px;
+}
+
+span.seatCharts-legendDescription {
+	margin-left: 5px;
+	line-height: 30px;
+}
+
+.checkout-button {
+	display: block;
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+.selected-seats {
+	max-height: 250px;
+	width: 350px;
+	margin-top: 10px;
+}
