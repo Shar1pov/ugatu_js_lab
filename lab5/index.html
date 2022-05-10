@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Шарипов И.Р. - игра Shot Only Eagles</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="js/jquery-3.6.0.js"></script>
+	<script src="js/main.js"></script>
+</head>
+
+<body>
+
+	<div class="settings__wrapper">
+		<div class="settings">
+			<h1 class="title">Shot Only Eagles</h1>
+			<div class="hello">
+				<h5>Цель игры:</h5>
+				<p>Необходимо застрелить всех орлов за отведенное время</p>
+				<h5>Правила игры:</h5>
+				<ul>
+					<li>В голубей стрелять нельзя!</li>
+					<li>Если не успеете застрелить всех орлов, то вы проиграли</li>
+				</ul>
+				<button type="button" class="btn-game chooseLvl">Start Game</button>
+			</div>
+
+			<div class="choose-level" style="display: none;">
+				<h5>Уровень сложности</h5>
+				<p>Выберите уровень сложности и начните играть!</p>
+				<div class="levels">
+					<button type="button" id="easyLvl" class="btn-level">Легкий уровень</button>
+					<button type="button" id="mediumLvl" class="btn-level">Средний уровень</button>
+					<button type="button" id="hardLvl" class="btn-level">Сложный уровень</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="settings" id="final-win" style="display: none;">
+		<h1 class="title">Shot Only Eagles</h1>
+		<h2>Ура! Вы победили.</h2>
+		<p>Вы слишком гениальны. Попробуйте уровень сложнее</p>
+
+		<button type="button" class="btn-game tryAgain">Start Game</button>
+	</div>
+
+	<div class="settings" id="final-lose" style="display: none;">
+		<h1 class="title">Shot Only Eagles</h1>
+		<h2>Вы проиграли</h2>
+		<p>Нужно больше тренироваться. Попробуйте еще раз</p>
+
+		<button type="button" class="btn-game tryAgain">Start Game</button>
+	</div>
+
+	<div class="timer" style="display: none;">
+		<span class="timer__counter">7</span>
+	</div>
+
+	<div class="birds"></div>
+
+	<div class="stats" style="display: none;">
+		<h5 class="stats__total">Выстрелов: <span id="stats__total-count">0</span></h5>
+		<h5 class="stats__total">Орлов подстрелено: <span id="stats__eagles-count">0</span></h5>
+	</div>
+
+	<video autoplay muted loop id="bg-video">
+		<source src="bg.mp4" type="video/mp4">
+	</video>
+</body>
+
+</html>
